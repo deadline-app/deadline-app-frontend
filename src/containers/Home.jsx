@@ -50,14 +50,14 @@ const Home = () => {
         const formattedTime = deadlineDate.toLocaleTimeString()
 
         return (
-          <div key={card.id} style={{backgroundColor: `${card.color}30`, backgroundColorOpacity: 30}} className={`w-[300px] bg-opacity-30 rounded-lg shadow py-6 px-6 text-white inline-block`}>
+          <div key={card.id} style={{backgroundColor: `${card.color}30`, backgroundColorOpacity: 30}} className={`w-[300px] bg-opacity-30 rounded-lg shadow py-4 px-6 text-white inline-block`}>
             <p className='text-lg font-bold'>{card.subject}</p>
-            <p className='text-md font-semibold'>{card.task_name}</p>
-            <div className='flex flex-row gap-2 mt-4'>
+            <p className=''>{card.task_name}</p>
+            <div className='flex flex-row gap-2 mt-2'>
               <p style={{border: "1px solid " + card.color}} className='inline-flex items-center rounded-md px-2 py-1 text-xs font-medium'>{formattedDate}</p>
               <p style={{border: "1px solid " + card.color}} className='inline-flex items-center rounded-md px-2 py-1 text-xs font-medium'>{formattedTime}</p>
             </div>
-            <div className='flex flex-col mt-4'>
+            <div className='flex flex-col mt-2'>
               <a style={{color: `${card.color}`}} href={card.task_info_link}>Условия &rarr;</a>
               <a style={{color: `${card.color}`}} className={card.task_submission_link === null ? "hidden" : ""} href={card.task_submission_link}>Сдать &rarr;</a>
               <a style={{color: `${card.color}`}} className={card.task_enrollment_link === null ? "hidden" : ""} href={card.task_enrollment_link}>Запись на сдачу &rarr;</a>
@@ -84,7 +84,7 @@ const Home = () => {
     <section className='w-full min-h-[100vh] bg-neutral-900 py-[50px] px-[30px]'>
       <h1 className='font-bold text-white text-2xl text-center'>IS y-25 <span className='font-normal'>deadlines app</span></h1>
       <h2 className='font-bold text-white text-md text-center'>Powered by <span className='font-normal'>@zdarovayrodi & @annsemen</span></h2>
-      <div className='flex gap-2 flex-1 overflow-x-scroll hide-scrollbar mt-12'>  
+      <div className='flex gap-6 flex-1 overflow-x-scroll hide-scrollbar mt-12'>  
         {showCards}
       </div>
     </section>
