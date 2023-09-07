@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react'
 import '../index.css'
 
@@ -11,7 +12,8 @@ const Home = () => {
   function groupByDate(cards) {
     const groupedData = {}
     cards.forEach(card => {
-      const date = card.deadline.split('T')[0]
+      const deadlineDate = new Date(card.deadline)
+      const date = deadlineDate.toLocaleDateString()
       if (!groupedData[date]) {
         groupedData[date] = []
       }
@@ -30,16 +32,23 @@ const Home = () => {
 
     displayData = sortedDates.map(date => {
       const cards = groupedData[date]
-      const cardElements = cards.map(card => (
-        <div key={card.id} className={`min-w-[300px] bg-[${card.color}30] rounded shadow py-8 px-4 text-white inline-block`}>
-          <p className='text-lg font-bold'>{card.subject}</p>
-          <p className='text-md font-semibold'>{card.task_name}</p>
-          <p>{card.deadline}</p>
-          <p>{card.task_info_link}</p>
-          <p>{card.task_submission_link}</p>
-          <p>{card.task_enrollment_link}</p>
-        </div>
-      ))
+      const cardElements = cards.map(card => {
+        const deadlineDate = new Date(card.deadline)
+        const formattedDate = deadlineDate.toLocaleDateString()
+        const formattedTime = deadlineDate.toLocaleTimeString()
+
+        return (
+          <div key={card.id} className={`min-w-[300px] bg-[${card.color}30] rounded shadow py-8 px-4 text-white inline-block`}>
+            <p className='text-lg font-bold'>{card.subject}</p>
+            <p className='text-md font-semibold'>{card.task_name}</p>
+            <p>{formattedDate}</p>
+            <p>{formattedTime}</p>
+            <p>{card.task_info_link}</p>
+            <p>{card.task_submission_link}</p>
+            <p>{card.task_enrollment_link}</p>
+          </div>
+        )
+      })
 
       return (
         <div key={date} className="flex flex-col gap-2">
