@@ -54,8 +54,12 @@ const Home = () => {
             <p className='text-lg font-bold'>{card.subject}</p>
             <p className=''>{card.task_name}</p>
             <div className='flex flex-row gap-2 mt-2'>
-              <p style={{border: "1px solid " + card.color}} className='inline-flex items-center rounded-md px-2 py-1 text-xs font-medium'>{formattedDate}</p>
-              <p style={{border: "1px solid " + card.color}} className='inline-flex items-center rounded-md px-2 py-1 text-xs font-medium'>{formattedTime}</p>
+              <p style={{border: "1px solid " + card.color,
+                         backgroundColor: card.color + "40",
+                        }} className='inline-flex items-center rounded-md px-2 py-1 text-xs font-medium'>{formattedDate}</p>
+              <p style={{border: "1px solid " + card.color,
+                         backgroundColor: card.color + "40",
+                        }} className='inline-flex items-center rounded-md px-2 py-1 text-xs font-medium'>{formattedTime}</p>
             </div>
             <div className='flex flex-col mt-2'>
               <a style={{color: `${card.color}`}} href={card.task_info_link}>Условия &rarr;</a>
