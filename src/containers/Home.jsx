@@ -44,13 +44,18 @@ const Home = () => {
 
     displayData = sortedDates.map(date => {
       const cards = groupedData[date]
+
+      // for the date above cards
+      const displayDate = new Date(date)
+      const formattedDisplayDate = displayDate.toLocaleDateString('ru-RU', { weekday: 'short', month: 'long', day: 'numeric' })
+
       const cardElements = cards.map(card => {
         const deadlineDate = new Date(card.deadline)
         const formattedDate = deadlineDate.toLocaleDateString()
         const formattedTime = deadlineDate.toLocaleTimeString()
 
         return (
-          <div key={card.id} style={{backgroundColor: `${card.color}30`, backgroundColorOpacity: 30}} className={`w-[300px] bg-opacity-30 rounded-lg shadow py-4 px-6 text-white inline-block`}>
+          <div key={card.id} style={{backgroundColor: `${card.color}30`, backgroundColorOpacity: 30}} className={`w-[300px] bg-opacity-30 rounded-lg shadow py-4 px-6 text-white inline-block mx-4`}>
             <p className='text-lg font-bold'>{card.subject}</p>
             <p className=''>{card.task_name}</p>
             <div className='flex flex-row gap-2 mt-2'>
@@ -72,7 +77,7 @@ const Home = () => {
 
       return (
         <div key={date} className="flex flex-col gap-2">
-          <p className="font-bold text-white">{date}</p>
+          <p className="font-bold text-white ml-8">{formattedDisplayDate}</p>
           {cardElements}
         </div>
       )
@@ -85,9 +90,9 @@ const Home = () => {
   }, [])
 
   return (
-    <section className='w-full min-h-[100vh] bg-neutral-900 py-[50px] px-[30px]'>
-      <h1 className='font-bold text-white text-2xl text-center'>IS y-25 <span className='font-normal'>deadlines app</span></h1>
-      <h2 className='font-bold text-white text-md text-center'>Powered by <span className='font-normal'>@zdarovayrodi & @annsemen</span></h2>
+    <section className='w-full min-h-[100vh] bg-neutral-900 py-[50px]'>
+      <h1 className='font-bold text-white text-2xl text-center px-[30px]'>IS y-25 <span className='font-normal'>deadlines app</span></h1>
+      <h2 className='font-bold text-white text-md text-center px-[30px]'>Powered by <span className='font-normal'>@zdarovayrodi & @annsemen</span></h2>
       <div className='flex gap-6 flex-1 overflow-x-scroll cursor-move scrollbar-hide hide-scrollbar mt-12' onWheel={(e) => {
         // here im handling the horizontal scroll inline, without the use of hooks
         const strength = Math.abs(e.deltaY);
