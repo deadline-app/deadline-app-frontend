@@ -53,11 +53,15 @@ const Home = () => {
           <div key={card.id} style={{backgroundColor: `${card.color}30`, backgroundColorOpacity: 30}} className={`w-[300px] bg-opacity-30 rounded-lg shadow py-6 px-6 text-white inline-block`}>
             <p className='text-lg font-bold'>{card.subject}</p>
             <p className='text-md font-semibold'>{card.task_name}</p>
-            <p>{formattedDate}</p>
-            <p>{formattedTime}</p>
-            <p style={{color: `${card.color}`}}className="">{card.task_info_link}</p>
-            <p style={{color: `${card.color}`}} className={card.task_submission_link === null ? "hidden" : ""} >{card.task_submission_link}</p>
-            <p style={{color: `${card.color}`}} className={card.task_enrollment_link === null ? "hidden" : ""} >{card.task_enrollment_link}</p>
+            <div className='flex flex-row gap-2 mt-4'>
+              <p style={{border: "1px solid " + card.color}} className='inline-flex items-center rounded-md px-2 py-1 text-xs font-medium'>{formattedDate}</p>
+              <p style={{border: "1px solid " + card.color}} className='inline-flex items-center rounded-md px-2 py-1 text-xs font-medium'>{formattedTime}</p>
+            </div>
+            <div className='flex flex-col mt-4'>
+              <a style={{color: `${card.color}`}} href={card.task_info_link}>Условия &rarr;</a>
+              <a style={{color: `${card.color}`}} className={card.task_submission_link === null ? "hidden" : ""} href={card.task_submission_link}>Сдать &rarr;</a>
+              <a style={{color: `${card.color}`}} className={card.task_enrollment_link === null ? "hidden" : ""} href={card.task_enrollment_link}>Запись на сдачу &rarr;</a>
+            </div>
           </div>
         )
       })
