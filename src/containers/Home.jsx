@@ -8,35 +8,30 @@ const Home = () => {
 
   let displayData
 
-  // Функция для группировки карточек по дате
   function groupByDate(cards) {
-    const groupedData = {}
+    const groupedData = {};
     cards.forEach(card => {
-      const deadlineDate = new Date(card.deadline)
-      const year = deadlineDate.getFullYear()
-      const month = deadlineDate.toLocaleString('default', { month: 'long' })
-      const day = deadlineDate.getDate()
-      const date = `${day} ${month} ${year}`
-      
+      const deadlineDate = new Date(card.deadline);
+      const date = deadlineDate.toISOString().split('T')[0]; // ISO-строка для правильного формата даты
       if (!groupedData[date]) {
-        groupedData[date] = []
+        groupedData[date] = [];
       }
-      groupedData[date].push(card)
-    })
+      groupedData[date].push(card);
+    });
   
     const sortedDates = Object.keys(groupedData).sort((a, b) => {
-      const dateA = new Date(a)
-      const dateB = new Date(b)
-      if (dateA < dateB) return -1
-      if (dateA > dateB) return 1
-      return a.localeCompare(b, undefined, { numeric: true })
-    })
+      const dateA = new Date(a);
+      const dateB = new Date(b);
+      if (dateA < dateB) return -1;
+      if (dateA > dateB) return 1;
+      return 0;
+    });
   
     return sortedDates.reduce((result, date) => {
-      result[date] = groupedData[date]
-      return result
-    }, {})
-  }
+      result[date] = groupedData[date];
+      return result;
+    }, {});
+  }  
   
 
   async function pullJson() {
