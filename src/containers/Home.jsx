@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react'
 import '../index.css'
 
@@ -26,7 +25,10 @@ const Home = () => {
     const responseData = await response.json()
     const groupedData = groupByDate(responseData)
 
-    displayData = Object.keys(groupedData).map(date => {
+    // Сортировка дат в хронологическом порядке
+    const sortedDates = Object.keys(groupedData).sort()
+
+    displayData = sortedDates.map(date => {
       const cards = groupedData[date]
       const cardElements = cards.map(card => (
         <div key={card.id} className={`min-w-[300px] bg-[${card.color}30] rounded shadow py-8 px-4 text-white inline-block`}>
