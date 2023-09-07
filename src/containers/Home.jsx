@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 import '../index.css'
-import { Card } from '../components/Card';
+import { Card, CardLink } from '../components/Card';
 
 const Home = () => {
   // API call
@@ -71,9 +71,9 @@ const Home = () => {
                         }} className='inline-flex items-center rounded-md px-2 py-1 text-xs font-medium'>{formattedTime}</p>
             </div>
             <div className='flex flex-col mt-2'>
-              <a style={{color: `${card.color}`}} href={card.task_info_link}>Условия &rarr;</a>
-              <a style={{color: `${card.color}`}} className={card.task_submission_link === null ? "hidden" : ""} href={card.task_submission_link}>Сдать &rarr;</a>
-              <a style={{color: `${card.color}`}} className={card.task_enrollment_link === null ? "hidden" : ""} href={card.task_enrollment_link}>Запись на сдачу &rarr;</a>
+              <CardLink color={`${card.color}`} href={card.task_info_link}>Условия &rarr;</CardLink>
+              <CardLink color={`${card.color}`} className={card.task_submission_link === null ? "hidden" : ""} href={card.task_submission_link}>Сдать &rarr;</CardLink>
+              <CardLink color={`${card.color}`} className={card.task_enrollment_link === null ? "hidden" : ""} href={card.task_enrollment_link}>Запись на сдачу &rarr;</CardLink>
             </div>
           </Card>
         )
