@@ -50,14 +50,14 @@ const Home = () => {
         const formattedTime = deadlineDate.toLocaleTimeString()
 
         return (
-          <div key={card.id} className={`w-[300px] bg-[${card.color}30] rounded-lg shadow py-6 px-6 text-white inline-block`}>
+          <div key={card.id} style={{backgroundColor: `${card.color}30`, backgroundColorOpacity: 30}} className={`w-[300px] bg-opacity-30 rounded-lg shadow py-6 px-6 text-white inline-block`}>
             <p className='text-lg font-bold'>{card.subject}</p>
             <p className='text-md font-semibold'>{card.task_name}</p>
             <p>{formattedDate}</p>
             <p>{formattedTime}</p>
-            <p className={`text-[${card.color}]`}>{card.task_info_link}</p>
-            <p className={`text-[${card.color}]`}>{card.task_submission_link}</p>
-            <p className={`text-[${card.color}]`}>{card.task_enrollment_link}</p>
+            <p style={{color: `${card.color}`}}className="">{card.task_info_link}</p>
+            <p style={{color: `${card.color}`}} className={card.task_submission_link === null ? "hidden" : ""} >{card.task_submission_link}</p>
+            <p style={{color: `${card.color}`}} className={card.task_enrollment_link === null ? "hidden" : ""} >{card.task_enrollment_link}</p>
           </div>
         )
       })
