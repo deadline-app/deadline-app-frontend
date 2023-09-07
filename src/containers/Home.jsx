@@ -1,8 +1,10 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 import '../index.css'
+import { Card } from '../components/Card';
 
 const Home = () => {
+  // API call
   const apiURL = 'http://localhost:3001/cards/';
   const [showCards, setShowCards] = useState();
 
@@ -55,7 +57,9 @@ const Home = () => {
         const formattedTime = deadlineDate.toLocaleTimeString()
 
         return (
-          <div key={card.id} style={{backgroundColor: `${card.color}30`, backgroundColorOpacity: 30}} className={`w-[300px] bg-opacity-30 rounded-lg shadow py-4 px-6 text-white inline-block mx-4`}>
+          <Card key={card.id}
+               bgcolor={`${card.color}`}
+               className={`w-[300px] bg-opacity-30 rounded-lg shadow py-4 px-6 text-white inline-block mx-4`}>
             <p className='text-lg font-bold'>{card.subject}</p>
             <p className=''>{card.task_name}</p>
             <div className='flex flex-row gap-2 mt-2'>
@@ -71,7 +75,7 @@ const Home = () => {
               <a style={{color: `${card.color}`}} className={card.task_submission_link === null ? "hidden" : ""} href={card.task_submission_link}>Сдать &rarr;</a>
               <a style={{color: `${card.color}`}} className={card.task_enrollment_link === null ? "hidden" : ""} href={card.task_enrollment_link}>Запись на сдачу &rarr;</a>
             </div>
-          </div>
+          </Card>
         )
       })
 
@@ -93,7 +97,7 @@ const Home = () => {
     <section className='w-full min-h-[100vh] bg-neutral-900 py-[50px]'>
       <h1 className='font-bold text-white text-2xl text-center px-[30px]'>IS y-25 <span className='font-normal'>deadlines app</span></h1>
       <h2 className='font-bold text-white text-md text-center px-[30px]'>Powered by <span className='font-normal'>@zdarovayrodi & @annsemen</span></h2>
-      <div className='flex gap-6 flex-1 overflow-x-scroll cursor-move scrollbar-hide hide-scrollbar mt-12'
+      <div className='flex flex-1 overflow-x-scroll scrollbar-hide hide-scrollbar mt-12'
           // onWheel={(e) => {
           //   // here im handling the horizontal scroll inline, without the use of hooks
           //   const strength = Math.abs(e.deltaY);
