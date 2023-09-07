@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react'
 import '../index.css'
 
@@ -6,12 +7,28 @@ const Home = () => {
   const [showCards, setShowCards] = useState();
 
   let displayData
+
+  // Функция для группировки карточек по дате
+  function groupByDate(cards) {
+    const groupedData = {}
+    cards.forEach(card => {
+      const date = card.deadline.split('T')[0]
+      if (!groupedData[date]) {
+        groupedData[date] = []
+      }
+      groupedData[date].push(card)
+    })
+    return groupedData
+  }
+
   async function pullJson() {
     const response = await fetch(apiURL)
     const responseData = await response.json()
-    
-    displayData = responseData.map(function(card) {
-      return (
+    const groupedData = groupByDate(responseData)
+
+    displayData = Object.keys(groupedData).map(date => {
+      const cards = groupedData[date]
+      const cardElements = cards.map(card => (
         <div key={card.id} className={`min-w-[300px] bg-[${card.color}30] rounded shadow py-8 px-4 text-white inline-block`}>
           <p className='text-lg font-bold'>{card.subject}</p>
           <p className='text-md font-semibold'>{card.task_name}</p>
@@ -19,6 +36,13 @@ const Home = () => {
           <p>{card.task_info_link}</p>
           <p>{card.task_submission_link}</p>
           <p>{card.task_enrollment_link}</p>
+        </div>
+      ))
+
+      return (
+        <div key={date} className="flex flex-col gap-2">
+          <p className="font-bold text-white">{date}</p>
+          {cardElements}
         </div>
       )
     })
