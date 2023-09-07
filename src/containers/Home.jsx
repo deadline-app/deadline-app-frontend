@@ -13,14 +13,31 @@ const Home = () => {
     const groupedData = {}
     cards.forEach(card => {
       const deadlineDate = new Date(card.deadline)
-      const date = deadlineDate.toLocaleDateString()
+      const year = deadlineDate.getFullYear()
+      const month = deadlineDate.toLocaleString('default', { month: 'long' })
+      const day = deadlineDate.getDate()
+      const date = `${day} ${month} ${year}`
+      
       if (!groupedData[date]) {
         groupedData[date] = []
       }
       groupedData[date].push(card)
     })
-    return groupedData
+  
+    const sortedDates = Object.keys(groupedData).sort((a, b) => {
+      const dateA = new Date(a)
+      const dateB = new Date(b)
+      if (dateA < dateB) return -1
+      if (dateA > dateB) return 1
+      return a.localeCompare(b, undefined, { numeric: true })
+    })
+  
+    return sortedDates.reduce((result, date) => {
+      result[date] = groupedData[date]
+      return result
+    }, {})
   }
+  
 
   async function pullJson() {
     const response = await fetch(apiURL)
