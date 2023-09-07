@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import '../index.css'
 
 const Home = () => {
   const apiURL = 'http://localhost:3001/cards/';
@@ -32,7 +33,7 @@ const Home = () => {
     <section className='w-full min-h-[100vh] bg-neutral-900 py-[50px] px-[30px]'>
       <h1 className='font-bold text-white text-2xl text-center'>IS y-25 <span className='font-normal'>deadlines app</span></h1>
       <h2 className='font-bold text-white text-md text-center'>Powered by <span className='font-normal'>@zdarovayrodi & @annsemen</span></h2>
-      <div className='flex gap-2 flex-1'>  
+      <div className='flex gap-2 flex-1 overflow-x-scroll hide-scrollbar'>  
         {showCards}
       </div>
     </section>
