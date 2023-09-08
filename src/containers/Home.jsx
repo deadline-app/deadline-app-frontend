@@ -94,7 +94,19 @@ const Home = () => {
   }, [])
 
   return (
-    <section className='w-full min-h-[100vh] bg-neutral-900 py-[50px]'>
+    <section className='relative isolate w-full min-h-[100vh] bg-neutral-900 py-[50px] overflow-hidden'>
+      <div
+        className="absolute -inset-x-2 top-0 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-40"
+        aria-hidden="true"
+      >
+        <div
+          className="relative left-[calc(50%-1rem)] aspect-[8/6] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#f3e761] to-[#c13fe8] opacity-30 sm:left-[calc(50%-3rem)] sm:w-[72.1875rem]"
+          style={{
+            clipPath:
+              "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
+          }}
+        />
+      </div>
       <h1 className='font-bold text-white text-2xl text-center px-[30px]'>IS y-25 <span className='font-normal'>deadlines app</span></h1>
       <h2 className='font-bold text-white text-md text-center px-[30px]'>Powered by <span className='font-normal'>@zdarovayrodi & @annsemen</span></h2>
       <div className='flex flex-1 overflow-x-scroll scrollbar-hide hide-scrollbar mt-12'
