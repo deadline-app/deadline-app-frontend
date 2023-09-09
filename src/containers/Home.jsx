@@ -5,7 +5,7 @@ import { Card, CardLink } from '../components/Card';
 
 const Home = () => {
   // API call
-  const apiURL = 'http://localhost:3001/cards/';
+  const apiURL = 'http://localhost:8080/cards/';
   const [showCards, setShowCards] = useState();
 
   let displayData
