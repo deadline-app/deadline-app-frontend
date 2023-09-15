@@ -9,6 +9,7 @@ const CreateCardForm = ({ isOpen, toggle }) => {
     task_name: "",
     color: "",
     deadline: "",
+    time: "",
     task_info_link: "",
     task_submission_link: "",
     task_enrollment_link: "",
@@ -18,7 +19,15 @@ const CreateCardForm = ({ isOpen, toggle }) => {
     e.preventDefault();
 
     try {
-      const dateTimeString = `${formData.deadline}T${formData.time}:00.000Z`;
+      
+        // Create a new Date object with the date and time from the form
+      const date = new Date(`${formData.deadline}T${formData.time}:00.000Z`);
+
+      // Set the timezone offset to UTC+3 (180 minutes ahead of UTC)
+      date.setMinutes(date.getMinutes() - 180);
+
+      // Format the date and time as a string in ISO format
+      const dateTimeString = date.toISOString();
       // Create the data object with the combined datetime
       const requestData = {
         subject: formData.subject,
