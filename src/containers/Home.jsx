@@ -123,7 +123,7 @@ const Home = () => {
         {showCards}
       </div>
     </section>
-      <CreateCardForm isOpen={isOpen} toggle={toggle} />
+      <CreateCardForm isOpen={isOpen} />
     <OpenMenuButton toggle={toggle} />
     </>
   )
