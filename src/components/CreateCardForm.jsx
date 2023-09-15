@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
+import { IoClose } from "react-icons/io5";
 
 const CreateCardForm = ({ isOpen, toggle }) => {
   const [formData, setFormData] = useState({
@@ -72,9 +73,19 @@ const CreateCardForm = ({ isOpen, toggle }) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleFormClick = (e) => {
-    // Prevent the click event from propagating to the outer div
-    e.stopPropagation();
+  const handleToggle = () => {
+    // empty form fields
+    setFormData({
+      subject: "",
+      task_name: "",
+      color: "",
+      deadline: "",
+      time: "",
+      task_info_link: "",
+      task_submission_link: "",
+      task_enrollment_link: "",
+    });
+    toggle();
   };
 
   return (
@@ -85,10 +96,13 @@ const CreateCardForm = ({ isOpen, toggle }) => {
           : "fixed z-50 top-[-100%] left-0 right-0 flex flex-col justify-center items-center h-[100vh] opacity-0 transition-all duration-500 ease-in-out"
       }
       isOpen={isOpen}
-      onClick={toggle}
+      // onClick={toggle}
     >
       <div class="!z-5 flex flex-col rounded-md gap-4 max-w-[300px] md:max-w-[400px] bg-neutral-700 shadow bg-clip-border shadow-3xl shadow-shadow-500 w-full !p-6 3xl:p-![18px] undefined">
-        <h1 className="text-xl text-neutral-200 font-bold">Новый дедлайн</h1>
+        <div className="flex flex-row justify-between items-center">
+          <h1 className="text-xl text-neutral-200 font-bold">Новый дедлайн</h1>
+          <IoClose className="text-2xl text-neutral-200 font-bold float-right cursor-pointer" onClick={handleToggle} />
+        </div>
         <Form onSubmit={handleSubmit}>
           <FloatingLabel
             controlId="floatingInput"
