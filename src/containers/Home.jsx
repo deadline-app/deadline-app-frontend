@@ -1,7 +1,9 @@
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../index.css'
 import { Card, CardLink } from '../components/Card';
+import CreateCardForm from '../components/CreateCardForm';
+import OpenMenuButton from '../components/OpenMenuButton';
 
 const Home = () => {
   // API call
@@ -93,7 +95,15 @@ const Home = () => {
     pullJson()
   }, [])
 
+  // make card appear
+  const [isOpen, setIsOpen] = useState(false);
+
+    const toggle = () => {
+        setIsOpen(!isOpen);
+    };
+
   return (
+    <>
     <section className='relative isolate w-full min-h-[100vh] bg-neutral-900 py-[50px] overflow-hidden'>
       <div
         className="absolute -inset-x-2 top-0 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-40"
@@ -109,34 +119,13 @@ const Home = () => {
       </div>
       <h1 className='font-bold text-white text-2xl text-center px-[30px]'>IS y-25 <span className='font-normal'>deadlines app</span></h1>
       <h2 className='font-bold text-white text-md text-center px-[30px]'>Powered by <span className='font-normal'>@zdarovayrodi & @annsemen</span></h2>
-      <div className='flex flex-1 overflow-x-scroll scrollbar-hide hide-scrollbar mt-12'
-          // onWheel={(e) => {
-          //   // here im handling the horizontal scroll inline, without the use of hooks
-          //   const strength = Math.abs(e.deltaY);
-          //   if (e.deltaY === 0) return;
-
-          //   const el = e.currentTarget;
-          //   if (
-          //     !(el.scrollLeft === 0 && e.deltaY < 0) &&
-          //     !(
-          //       el.scrollWidth -
-          //         el.clientWidth -
-          //         Math.round(el.scrollLeft) ===
-          //         0 && e.deltaY > 0
-          //     )
-          //   ) {
-          //     e.preventDefault();
-          //   }
-          //   el.scrollTo({
-          //     left: el.scrollLeft + e.deltaY,
-          //     // large scrolls with smooth animation behavior will lag, so switch to auto
-          //     behavior: strength > 70 ? "auto" : "smooth",
-          //   });
-          // }}
-      >  
+      <div className='flex flex-1 overflow-x-scroll scrollbar-hide hide-scrollbar mt-12'>  
         {showCards}
       </div>
     </section>
+      <CreateCardForm isOpen={isOpen} toggle={toggle} />
+    <OpenMenuButton toggle={toggle} />
+    </>
   )
 }
 
