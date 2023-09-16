@@ -11,11 +11,16 @@ import "./index.css";
 
 import Login from './components/Login';
 import Home from './containers/Home';
+import Register from './components/Register';
 
 const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
   {
     path: "/*",
