@@ -73,9 +73,27 @@ const Home = () => {
                         }} className='inline-flex items-center rounded-md px-2 py-1 text-xs font-medium'>{formattedTime}</p>
             </div>
             <div className='flex flex-col mt-2'>
-              <CardLink color={`${card.color}`} href={card.task_info_link}>Условия &rarr;</CardLink>
-              <CardLink color={`${card.color}`} className={card.task_submission_link === null ? "hidden" : ""} href={card.task_submission_link}>Сдать &rarr;</CardLink>
-              <CardLink color={`${card.color}`} className={card.task_enrollment_link === null ? "hidden" : ""} href={card.task_enrollment_link}>Запись на сдачу &rarr;</CardLink>
+              <CardLink
+                color={card.color}
+                style={{ display: card.task_info_link ? "block" : "none" }}
+                href={card.task_info_link}
+              >
+                Условия &rarr;
+              </CardLink>
+              <CardLink
+                color={card.color}
+                style={{ display: card.task_submission_link ? "block" : "none" }}
+                href={card.task_submission_link}
+              >
+                Сдать &rarr;
+              </CardLink>
+              <CardLink
+                color={card.color}
+                style={{ display: card.task_enrollment_link ? "block" : "none" }}
+                href={card.task_enrollment_link}
+              >
+                Запись на сдачу &rarr;
+              </CardLink>
             </div>
           </Card>
         )
